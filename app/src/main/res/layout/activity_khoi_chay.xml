@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".KhoiChayActivity">
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vui lòng chờ"
+            android:textSize="40dp"
+            android:layout_marginBottom="10dp"
+            />
+        <io.netopen.hotbitmapgg.library.view.RingProgressBar
+            android:id="@+id/progress_bar_2"
+            android:layout_width="wrap_content"
+            android:layout_height="153dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="100dp"
+            app:max="100"
+            app:ringColor="@android:color/darker_gray"
+            app:ringProgressColor="@color/colorPrimary"
+            app:ringWidth="10dp"
+            app:style="STROKE"
+            app:textColor="@color/colorPrimary"
+            app:textIsShow="true"
+            app:textSize="16sp" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,113 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@drawable/logoback"
+    tools:context=".dangnhap.DangKiActivity"
+    android:id="@+id/myrl">
+
+    <ImageView
+        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:src="@drawable/dv" />
+
+    <EditText
+        android:hint="@string/ten_guoi_dung"
+        android:background="#ffffff"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
+        android:inputType="text"
+        android:drawableLeft="@drawable/name"
+        android:ems="10"
+        android:id="@+id/name"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp" />
+    <EditText
+        android:layout_below="@+id/name"
+        android:hint="@string/email"
+        android:background="#ffffff"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
+        android:inputType="textEmailAddress"
+        android:drawableLeft="@drawable/mail"
+        android:ems="10"
+        android:id="@+id/mail"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp" />
+    <EditText
+        android:layout_below="@+id/mail"
+        android:hint="@string/so_dien_thoai"
+        android:background="#ffffff"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
+        android:inputType="phone"
+        android:drawableLeft="@drawable/phonedt"
+        android:ems="10"
+        android:id="@+id/phone"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp" />
+    <EditText
+        android:layout_below="@+id/phone"
+        android:hint="@string/id"
+        android:background="#ffffff"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
+        android:inputType="textPersonName"
+        android:drawableLeft="@drawable/tennguoidun"
+        android:ems="10"
+        android:id="@+id/user"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp" />
+
+    <EditText
+        android:hint="@string/mat_khau"
+        android:drawableLeft="@drawable/matkau"
+        android:background="#ffffff"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="15dp"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/pass"
+        android:layout_below="@+id/user"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/btDangKi"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/etPassword"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="30dp"
+        android:background="#2196F3"
+        android:onClick="OnSign"
+        android:text="Đăng kí" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:textSize="25dp"
+            android:textColor="#ffffff"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text="Đã có tài khoản "
+            />
+        <TextView
+            android:id="@+id/txt_dangki"
+            android:textSize="25dp"
+            android:textColor="#2196F3"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text="@string/dang_nhap_txt_view"
+            android:paddingLeft="5dp"
+
+            />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".placeonmap.XemPlaceActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/hotro"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="8dp"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="3dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+
+        <ImageView
+            android:onClick="trove"
+            android:id="@+id/trove"
+            android:src="@drawable/trove"
+            android:layout_width="40sp"
+            android:layout_height="40sp" />
+        <TextView
+            android:textSize="20sp"
+            android:layout_marginLeft="80sp"
+            android:text="Thông tin địa điểm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </android.support.v7.widget.Toolbar>
+    <LinearLayout
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/photo"
+            android:src="@drawable/logoback"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/places_name"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="@string/place_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/places_address"
+                android:textSize="16sp"
+                android:textStyle="italic"
+                android:text="@string/place_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/places_open_hour"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="@string/mo_cua"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:autoLink="phone"
+                android:id="@+id/sodt"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="@string/so_dt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/trangweb"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="@string/trang_web"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:max="5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/showmap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hiển thì bản đồ"
+                style="@style/Widget.AppCompat.Button.Colored"
+                />
+            <Button
+                android:id="@+id/chiduong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chỉ đường"
+                style="@style/Widget.AppCompat.Button.Colored"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

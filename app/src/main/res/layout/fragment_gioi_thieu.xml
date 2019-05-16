@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:textColor="#108115"
+        android:text="Ứng dụng tra cứu địa điểm"
+        android:textSize="30dp" />
+    <TextView
+        android:textSize="30dp"
+        android:text="Phiên bản:"
+        android:layout_marginTop="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:textSize="30dp"
+        android:text="1.0"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="270dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:textSize="30dp"
+        android:text="Điện thoại:"
+        android:layout_marginTop="220dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:autoLink="phone"
+        android:id="@+id/goi_dien"
+        android:textSize="25dp"
+        android:text="0353260123"
+        android:layout_marginTop="220dp"
+        android:layout_marginLeft="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:textSize="30dp"
+        android:text="Địa chỉ:"
+        android:layout_marginTop="290dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:textSize="25dp"
+        android:text="Kiên Lương, Kiên Giang"
+        android:layout_marginTop="290dp"
+        android:layout_marginLeft="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:textSize="25dp"
+        android:text="Ứng dụng tra cứu địa điểm giúp ta tìm kiếm địa điểm một cách nhanh hơn."
+        android:layout_marginTop="390dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:textSize="30dp"
+        android:text="2019"
+        android:layout_marginTop="650dp"
+        android:layout_marginLeft="160dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="176dp"
+    android:background="#44B949"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:text="Ứng dụng tra cứu địa điểm" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/nguoidung" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Xin chào"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+</LinearLayout>

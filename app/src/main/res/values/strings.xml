@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Tra cứu địa điểm</string>
+
+    <string name="google_maps_key">AIzaSyCIuZ-GgWalo7PSOXdHqqrWvhlVHVqha-k</string>
+    <string name="map_key"></string>
+
+
+    <string name="title_activity_maps">Map</string>
+    <string name="txt_dang_nhap">Tên tài khoản</string>
+    <string name="txt_mat_khau">Mật khẩu</string>
+    <string name="bt_dang_nhap">Đăng nhập</string>
+    <string name="txt_view_dang_ki">Đăng kí</string>
+    <string name="txt_dang_nhap_dk">Tên đăng nhập</string>
+    <string name="txt_pass_dk">Mật khẩu</string>
+    <string name="txt_xn_mk">Xác nhận mật khẩu</string>
+    <string name="bt_dang_ki">Đăng kí</string>
+    <string name="txt_view_dang_nhap">Đăng nhập</string>
+    <string name="email">Email</string>
+    <string name="dien_thoai">Điện thoại</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="thanhpho">
+        <item>Rạch Giá</item>
+        <item>Cần Thơ</item>
+        <item>Hồ Chí Minh</item>
+        <item>Hà Nội</item>
+    </string-array>
+    <string name="dang_ki_txt_view">Đăng kí</string>
+    <string name="dang_nhap_txt_view">Đăng nhập</string>
+    <string name="ten_guoi_dung">Tên người dùng</string>
+    <string name="so_dien_thoai">Số điện thoại</string>
+    <string name="id">ID</string>
+    <string name="mat_khau">Mật khẩu</string>
+    <string name="place_name">Tên địa điểm</string>
+    <string name="place_address">Địa điểm</string>
+    <string name="mo_cua">Mở cửa</string>
+    <string name="so_dt">Số điện thoại</string>
+    <string name="trang_web">Trang web</string>
+    <string name="title_activity_chi_duong">Map</string>
+</resources>

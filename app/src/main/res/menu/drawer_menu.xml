@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+<group android:checkableBehavior="single">
+    <item android:id="@+id/trangchu"
+        android:title="Nhà"
+        android:icon="@drawable/home"/>
+    <item android:id="@+id/yeuthich"
+        android:icon="@drawable/yeuthich"
+        android:title="Yêu thích"/>
+    <item android:id="@+id/lichsu"
+        android:icon="@drawable/lichsu"
+        android:title="Lịch sử"/>
+    <item android:id="@+id/share"
+        android:title="Chia sẻ"
+        android:icon="@drawable/shareapp"/>
+    <item android:id="@+id/phanhoi"
+        android:title="Ý kiến người dùng"
+        android:icon="@drawable/phanhoi"/>
+    <item android:id="@+id/gioithieu"
+        android:icon="@drawable/gioithieu"
+        android:title="Giới thiệu"/>
+</group>
+
+</menu>
