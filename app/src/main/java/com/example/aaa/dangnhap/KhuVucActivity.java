@@ -18,7 +18,7 @@ import com.example.aaa.dangnhap.KhuVucActivity;
 public class KhuVucActivity extends AppCompatActivity {
 
     ListView listView;
-    String thanhpho[] = {"Rạch Giá", "Càn Thơ", "Hồ Chí Minh", "Vũng Tàu", "Đà Nẵng", "Thanh Hóa", "Tây Ninh", "Thừa Thiên Huế","Hà Nội"};
+    String thanhpho[] = {"Rạch Giá", "Cần Thơ", "Hồ Chí Minh", "Vũng Tàu", "Đà Nẵng", "Thanh Hóa", "Tây Ninh", "Thừa Thiên Huế","Hà Nội"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

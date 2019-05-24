@@ -1,16 +1,16 @@
 package com.example.aaa.helper;
 
-import com.google.android.gms.maps.model.LatLng;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import com.google.android.gms.maps.model.LatLng;
 
-public class DirectionsJSONParser {
+public class DirectionJSONParser {
 
     /** Receives a JSONObject and returns a list of lists containing latitude and longitude */
     public List<List<HashMap<String,String>>> parse(JSONObject jObject){

@@ -5,11 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.homeFragment" >
+
     <fragment
-        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:id="@+id/mapapi"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+        <Spinner
+
+            android:id="@+id/maptype"
+            android:entries="@array/type_map"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </Spinner>
+        <RelativeLayout
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="100dp"
+            android:gravity="top|right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/danhmuc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/danhmuc" />
+        </RelativeLayout>
+    </fragment>
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/nav_bott"
         android:layout_alignParentBottom="true"
@@ -22,6 +44,5 @@
         app:menu="@menu/diadiem_menu" >
 
     </android.support.design.widget.BottomNavigationView>
-
 
 </RelativeLayout>

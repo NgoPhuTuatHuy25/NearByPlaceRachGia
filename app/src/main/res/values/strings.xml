@@ -22,11 +22,12 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string-array name="thanhpho">
-        <item>Rạch Giá</item>
-        <item>Cần Thơ</item>
-        <item>Hồ Chí Minh</item>
-        <item>Hà Nội</item>
+    <string-array name="type_map">
+        <item>Bình thường</item>
+        <item>Hỗn hợp</item>
+        <item>Vệ tinh</item>
+        <item>Địa hình</item>
+        <item>Lưới trống</item>
     </string-array>
     <string name="dang_ki_txt_view">Đăng kí</string>
     <string name="dang_nhap_txt_view">Đăng nhập</string>
@@ -40,4 +41,21 @@
     <string name="so_dt">Số điện thoại</string>
     <string name="trang_web">Trang web</string>
     <string name="title_activity_chi_duong">Map</string>
+    <string name="title_activity_dan_duong">Map</string>
+
+    <string-array name="nearby_option">
+
+        <item>Select a Type</item>
+        <item>Bus station</item>
+        <item>Atm</item>
+        <item>Lodging</item>
+        <item>Bank</item>
+        <item>Gas station</item>
+        <item>Hospital</item>
+        <item>Restaurant</item>
+        <item>School</item>
+        <item>University</item>
+
+
+    </string-array>
 </resources>

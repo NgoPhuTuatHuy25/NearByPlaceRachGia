@@ -17,11 +17,18 @@
     Alternatively, follow the directions here:
     https://developers.google.com/maps/documentation/android/start#get-key
 
+    AIzaSyCIuZ-GgWalo7PSOXdHqqrWvhlVHVqha-k
+
     Once you have your key (it starts with "AIza"), replace the "google_maps_key"
     string in this file.
     -->
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCIuZ-GgWalo7PSOXdHqqrWvhlVHVqha-k</string>
+    <!-- <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyB3DHJ20jXAbRTZcfhchBob0ExJ2pqvJyA</string>
     <string name="browser_key">AIzaSyA3ULnlbG32WwuFZt9t7yQIN0dgyoVufOU</string>
     <string name="key1">AIzaSyDI93-TUeiM8pg6SvaKlStd38HE5U3qtCc</string>
-    <string name="key_xem_place">AIzaSyDsLlJcoKoMRnEfYcF400sTPUYOcXXFZOc</string>
+    <string name="key_xem_place">AIzaSyDsLlJcoKoMRnEfYcF400sTPUYOcXXFZOc</string>-->
+
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCEVdf5xZ93P21BJIqCxZVGDjpdSo7iVqI</string>
+    <string name="browser_key">AIzaSyCEVdf5xZ93P21BJIqCxZVGDjpdSo7iVqI</string>
+    <string name="key1">AIzaSyCEVdf5xZ93P21BJIqCxZVGDjpdSo7iVqI</string>
+    <string name="key_xem_place">AIzaSyCEVdf5xZ93P21BJIqCxZVGDjpdSo7iVqI</string>
 </resources>

@@ -9,6 +9,7 @@
     android:id="@+id/myrl">
 
     <ImageView
+        android:background="@null"
         android:layout_marginTop="50dp"
         android:layout_width="wrap_content"
         android:layout_height="150dp"

@@ -1,4 +1,4 @@
-package com.example.aaa.placeonmap;
+package com.example.aaa.xemmap;
 
 import android.annotation.SuppressLint;
 import android.support.design.internal.BottomNavigationItemView;

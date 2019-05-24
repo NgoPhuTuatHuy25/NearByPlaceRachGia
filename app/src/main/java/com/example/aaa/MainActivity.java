@@ -13,9 +13,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.example.aaa.fragment.NearByFragment;
 import com.example.aaa.fragment.PhanHoiFragment;
 import com.example.aaa.fragment.gioiThieuFragment;
 import com.example.aaa.fragment.homeFragment;
+import com.mancj.materialsearchbar.MaterialSearchBar;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
@@ -50,6 +53,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.trangchu:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new homeFragment()).commit();
+                break;
+            case R.id.danduong:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new NearByFragment()).commit();
                 break;
             case R.id.share:
                 shareApp();

@@ -6,6 +6,9 @@
     <item android:id="@+id/trangchu"
         android:title="Nhà"
         android:icon="@drawable/home"/>
+    <item android:id="@+id/danduong"
+        android:title="Chỉ đường"
+        android:icon="@drawable/home"/>
     <item android:id="@+id/yeuthich"
         android:icon="@drawable/yeuthich"
         android:title="Yêu thích"/>
@@ -16,7 +19,7 @@
         android:title="Chia sẻ"
         android:icon="@drawable/shareapp"/>
     <item android:id="@+id/phanhoi"
-        android:title="Ý kiến người dùng"
+        android:title="Phản hồi"
         android:icon="@drawable/phanhoi"/>
     <item android:id="@+id/gioithieu"
         android:icon="@drawable/gioithieu"

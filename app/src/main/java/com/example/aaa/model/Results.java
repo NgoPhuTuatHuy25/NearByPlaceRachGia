@@ -1,6 +1,6 @@
 package com.example.aaa.model;
 
-public class Results{
+public class Results {
     private String[] types;
 
     private String icon;

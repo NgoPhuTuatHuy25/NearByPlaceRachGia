@@ -1,20 +1,23 @@
-package com.example.aaa.placeonmap;
+package com.example.aaa.xemmap;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.aaa.Common;
-import com.example.aaa.MainActivity;
 import com.example.aaa.fragment.homeFragment;
 import com.example.aaa.model.PlaceDetail;
+import com.example.aaa.chiduong.Results;
 import com.squareup.picasso.Picasso;
 import com.example.aaa.R;
 
@@ -34,6 +37,9 @@ public class XemPlaceActivity extends AppCompatActivity {
 
     PlaceDetail mPlace;
 
+    private Results re;
+    private double lat, lng;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +50,20 @@ public class XemPlaceActivity extends AppCompatActivity {
         ratingBar = findViewById(R.id.ratingBar);
 
         btnViewOnMap = findViewById(R.id.showmap);
-        btnViewDirection = findViewById(R.id.chiduong);
+   //     btnViewDirection = findViewById(R.id.chiduong);
+
+        init();
+//        Bundle bundle = getIntent().getExtras();
+//
+//        if (bundle != null) {
+//            re = (Results) bundle.getSerializable("result");
+//            lat = bundle.getDouble("lat");
+//            lng = bundle.getDouble("lng");
+//            //Toast.makeText(this, String.valueOf(results.getPhotos()[0].getPhoto_reference()), Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(this, "Got Nothing!!", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
 
         trangweb = findViewById(R.id.trangweb);
         place_address = findViewById(R.id.places_address);
@@ -73,7 +92,12 @@ public class XemPlaceActivity extends AppCompatActivity {
         btnViewDirection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               startActivity(new Intent(XemPlaceActivity.this,ChiDuongActivity.class));
+              Intent intent = new Intent(XemPlaceActivity.this,ChiDuongActivity.class);
+//                intent.putExtra("result", re);
+//                intent.putExtra("lat", lat);
+//                intent.putExtra("lng", lng);
+//                intent.putExtra("type", "distance");
+                startActivity(intent);
             }
         });
 
@@ -85,14 +109,14 @@ public class XemPlaceActivity extends AppCompatActivity {
             }
         });
 
-        if (Common.currresults.getPhotos() != null && Common.currresults.getPhotos().length > 0)  {
-
-            Picasso.with(this)
-                    .load(getPhotoOfPlaces(Common.currresults.getPhotos()[0].getPhoto_reference(),1000))
-                    .placeholder(R.drawable.logoback)
-                    .error(R.drawable.error)
-                    .into(photo);
-        }
+//        if (Common.currresults.getPhotos() != null && Common.currresults.getPhotos().length > 0)  {
+//
+//            Picasso.with(this)
+//                    .load(getPhotoOfPlaces(Common.currresults.getPhotos()[0].getPhoto_reference(),1000))
+//                    .placeholder(R.drawable.logoback)
+//                    .error(R.drawable.error)
+//                    .into(photo);
+//        }
 
         if (Common.currresults.getRating() != null && !TextUtils.isEmpty(Common.currresults.getRating()))  {
             ratingBar.setRating(Float.parseFloat(Common.currresults.getRating()));
@@ -146,6 +170,9 @@ public class XemPlaceActivity extends AppCompatActivity {
     }
 
     public void trove(View view) {
-        startActivity(new Intent(XemPlaceActivity.this, homeFragment.class));
+        startActivity(new Intent(getApplicationContext(), homeFragment.class));
+    }
+    private void init(){
+        btnViewDirection =findViewById(R.id.chiduong);
     }
 }

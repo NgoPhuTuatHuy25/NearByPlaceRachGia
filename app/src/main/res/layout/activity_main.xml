@@ -19,10 +19,11 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
-            android:outlineProvider="bounds"
             android:elevation="5dp"
+            android:outlineProvider="bounds"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
         </android.support.v7.widget.Toolbar>
 
         <FrameLayout

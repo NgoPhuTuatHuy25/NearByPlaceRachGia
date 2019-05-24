@@ -1,4 +1,4 @@
-package com.example.aaa.placeonmap;
+package com.example.aaa.xemmap;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -11,8 +11,9 @@ import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 
-import com.example.aaa.helper.DirectionsJSONParser;
+import com.example.aaa.helper.DirectionJSONParser;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -188,8 +189,8 @@ public class ChiDuongActivity extends FragmentActivity implements OnMapReadyCall
                 .append(",")
                 .append(location.getLng())
                 .toString();
-
-        mService.getDirections(origin, destination)
+        String key = getResources().getString(R.string.google_maps_key);
+        mService.getDirections(origin, destination, key)
                 .enqueue(new Callback<String>() {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
@@ -203,17 +204,18 @@ public class ChiDuongActivity extends FragmentActivity implements OnMapReadyCall
                 });
     }
 
+
     private class ParserTask extends AsyncTask<String, Integer, List<List<HashMap<String, String>>>> {
 
-        AlertDialog waitingDialog = new SpotsDialog(ChiDuongActivity.this);
+      //  AlertDialog waitingDialog = new SpotsDialog(ChiDuongActivity.this);
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            waitingDialog.show();
-            waitingDialog.setMessage("chờ");
-
-        }
+//        @Override
+//        protected void onPreExecute() {
+//            super.onPreExecute();
+//         //   waitingDialog.show();
+//       //     waitingDialog.setMessage("chờ");
+//
+//        }
 
         @Override
         protected List<List<HashMap<String, String>>> doInBackground(String... strings) {
@@ -223,7 +225,7 @@ public class ChiDuongActivity extends FragmentActivity implements OnMapReadyCall
             try {
                 jsonObject = new JSONObject(strings[0]);
 
-                DirectionsJSONParser parser = new DirectionsJSONParser();
+                DirectionJSONParser parser = new DirectionJSONParser();
                 routes = parser.parse(jsonObject);
 
             } catch (JSONException e) {
@@ -235,37 +237,54 @@ public class ChiDuongActivity extends FragmentActivity implements OnMapReadyCall
 
         @Override
         protected void onPostExecute(List<List<HashMap<String, String>>> lists) {
-            super.onPostExecute(lists);
+       //     super.onPostExecute(lists);
 
-            ArrayList points = null;
-            PolylineOptions polylineOptions = null;
+          //  ArrayList points = null;
+           // PolylineOptions polylineOptions = null;
+
+            ArrayList<LatLng> points;
+            PolylineOptions lineOptions = null;
 
             for (int i = 0; i < lists.size(); i++) {
+                points = new ArrayList<>();
+                lineOptions = new PolylineOptions();
 
-                points = new ArrayList();
-                polylineOptions = new PolylineOptions();
-
+//            for (int i = 0; i < lists.size(); i++) {
+//
+//                points = new ArrayList();
+//                polylineOptions = new PolylineOptions();
+//
+//                List<HashMap<String, String>> path = lists.get(i);
+//
+//                for (int j = 0; j < path.size(); j++) {
+//
+//                    HashMap<String, String> point = path.get(j);
+//
+//                    double lat = Double.parseDouble(point.get("lat"));
+//                    double lng = Double.parseDouble(point.get("lng"));
+//
+//                    LatLng position = new LatLng(lat, lng);
                 List<HashMap<String, String>> path = lists.get(i);
 
+            // Fetching all the points in i-th route
                 for (int j = 0; j < path.size(); j++) {
+                HashMap<String, String> point = path.get(j);
 
-                    HashMap<String, String> point = path.get(j);
-
-                    double lat = Double.parseDouble(point.get("lat"));
-                    double lng = Double.parseDouble(point.get("lng"));
-
-                    LatLng position = new LatLng(lat, lng);
+                double lat = Double.parseDouble(point.get("lat"));
+                double lng = Double.parseDouble(point.get("lng"));
+                LatLng position = new LatLng(lat, lng);
 
                     points.add(position);
                 }
-                polylineOptions.addAll(points);
-                polylineOptions.width(12);
-                polylineOptions.color(Color.BLUE);
-                polylineOptions.geodesic(true);
+                lineOptions.addAll(points);
+                lineOptions.width(12);
+                lineOptions.color(Color.BLUE);
+                lineOptions.geodesic(true);
+                Log.d("onPostExecute", "onPostExecute lineoptions decoded");
             }
-            if(polylineOptions!=null){
-                 mMap.addPolyline(polylineOptions);
-                 waitingDialog.dismiss();
+            if (lineOptions != null) {
+                mMap.addPolyline(lineOptions);
+              //  waitingDialog.dismiss();
 
             }
 

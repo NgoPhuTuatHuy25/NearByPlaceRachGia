@@ -45,7 +45,7 @@ public class KhoiChayActivity extends AppCompatActivity {
             public void run() {
                 for(int i=0; i<100; i++){
                     try {
-                        Thread.sleep(80);
+                        Thread.sleep(100);
                         handler.sendEmptyMessage(0);
                     } catch (InterruptedException e) {
                         e.printStackTrace();

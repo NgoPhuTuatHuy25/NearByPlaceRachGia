@@ -25,9 +25,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_sqr"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_clr"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
@@ -44,12 +44,15 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".placeonmap.ChiDuongActivity"
-            android:label="@string/title_activity_chi_duong"></activity>
-        <activity android:name=".placeonmap.XemPlaceActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            >
-        </activity>
+            android:name=".xemmap.DanDuongActivity"
+            android:label="@string/title_activity_dan_duong"></activity>
+        <activity android:name=".fragment.DanhMucActivity" />
+        <activity
+            android:name=".xemmap.ChiDuongActivity"
+            android:label="@string/title_activity_chi_duong" />
+        <activity
+            android:name=".xemmap.XemPlaceActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -87,6 +90,16 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.PlaceDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.PlaceOnMapActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ShowPlacesOnMapActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>

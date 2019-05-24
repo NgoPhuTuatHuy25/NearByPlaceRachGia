@@ -16,19 +16,24 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.aaa.Common;
 import com.example.aaa.R;
 import com.example.aaa.model.MyPlaces;
 import com.example.aaa.model.Results;
-import com.example.aaa.placeonmap.BottomNavigationViewHelper;
-import com.example.aaa.placeonmap.XemPlaceActivity;
+
+import com.example.aaa.xemmap.BottomNavigationViewHelper;
+import com.example.aaa.xemmap.XemPlaceActivity;
 import com.example.aaa.remote.IGoogleApiServer;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -69,6 +74,8 @@ public class homeFragment extends Fragment implements OnMapReadyCallback
 
     MyPlaces myPlaces;
 
+
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_home, container, false);
@@ -76,13 +83,43 @@ public class homeFragment extends Fragment implements OnMapReadyCallback
                 .findFragmentById(R.id.mapapi);
         mapFragment.getMapAsync(this);
 
-        mServer  = Common.getIGoogleApiServer();
+        mServer = Common.getIGoogleApiServer();
 
 
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocaltionPermission();
         }
+        ImageButton imageButton = (ImageButton) rootView.findViewById(R.id.danhmuc);
+
+        Spinner spinner = rootView.findViewById(R.id.maptype);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                        break;
+                    case 1:
+                        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                        break;
+                    case 2:
+                        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                        break;
+                    case 3:
+                        mMap.setMapType(GoogleMap.MAP_TYPE_NONE);
+                        break;
+                    default:
+                        mMap.setMapType(GoogleMap.MAP_TYPE_NONE);
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         BottomNavigationView bottomNavigationView = (BottomNavigationView) rootView.findViewById(R.id.nav_bott);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -97,7 +134,7 @@ public class homeFragment extends Fragment implements OnMapReadyCallback
                         nearbyPlace("bus_station");
                         break;
                     case R.id.khachsan:
-                        nearbyPlace("school");
+                        nearbyPlace("lodging");
                         break;
                 }
 
@@ -208,11 +245,15 @@ public class homeFragment extends Fragment implements OnMapReadyCallback
                                 LatLng latLng = new LatLng(lat, lng);
                                 markerOptions.position(latLng);
                                 markerOptions.title(placeName);
+                                markerOptions.title(vicinicity);
                                 if(placeType.equals("atm"))
                                     markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+
                                 else if(placeType.equals("bus_station"))
                                     markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-                                else  if(placeType.equals("school"))
+                                else  if(placeType.equals("lodging"))
+                                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+                                else  if(placeType.equals("cafe"))
                                     markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
                                 else
                                     markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
@@ -305,6 +346,7 @@ public class homeFragment extends Fragment implements OnMapReadyCallback
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
+
                 if(marker.getSnippet() != null) {
                     //khi người dùng chom địa điểm, thì sẽ server trả kết quả về
                     Common.currresults = myPlaces.getResults()[Integer.parseInt(marker.getSnippet())];
