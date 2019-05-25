@@ -12,8 +12,10 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.example.aaa.helper.DirectionJSONParser;
+import com.example.aaa.pojo.Example;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -46,10 +48,13 @@ import com.example.aaa.remote.IGoogleApiServer;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ChiDuongActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    TextView ShowDistanceDuration;
 
     FusedLocationProviderClient fusedLocationProviderClient;
     LocationCallback locationCallback;
@@ -71,6 +76,7 @@ public class ChiDuongActivity extends FragmentActivity implements OnMapReadyCall
         mapFragment.getMapAsync(this);
 
         mService = Common.getIGoogleApiServerScalar();
+        ShowDistanceDuration = (TextView) findViewById(R.id.show_distance_time);
 
         buildLocationRequest();
         buildLocationCallback();
@@ -190,11 +196,14 @@ public class ChiDuongActivity extends FragmentActivity implements OnMapReadyCall
                 .append(location.getLng())
                 .toString();
         String key = getResources().getString(R.string.google_maps_key);
+
         mService.getDirections(origin, destination, key)
                 .enqueue(new Callback<String>() {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
                         new ParserTask().execute(response.body().toString());
+
+
                     }
 
                     @Override
@@ -202,6 +211,42 @@ public class ChiDuongActivity extends FragmentActivity implements OnMapReadyCall
 
                     }
                 });
+        String url = "https://maps.googleapis.com/maps/";
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(url)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        IGoogleApiServer service = retrofit.create(IGoogleApiServer.class);
+        Call<Example> call = service.getDistanceDuration("mectric",origin, destination, "driving");
+        call.enqueue(new Callback<Example>() {
+            @Override
+            public void onResponse(Call<Example> call, Response<Example> response) {
+                try {
+                    //Remove previous line from map
+                    if (polyline != null) {
+                        polyline.remove();
+                    }
+                    // This loop will go through all the results and add marker on each location.
+                    for (int i = 0; i < response.body().getRoutes().size(); i++) {
+                        String distance = response.body().getRoutes().get(i).getLegs().get(i).getDistance().getText();
+                        String time = response.body().getRoutes().get(i).getLegs().get(i).getDuration().getText();
+                        ShowDistanceDuration.setText("Distance:" + distance + ", Duration:" + time);
+                        String encodedString = response.body().getRoutes().get(0).getOverviewPolyline().getPoints();
+
+                    }
+                } catch (Exception e) {
+                    Log.d("onResponse", "There is an error");
+                    e.printStackTrace();
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<Example> call, Throwable t) {
+
+            }
+        });
     }
 
 

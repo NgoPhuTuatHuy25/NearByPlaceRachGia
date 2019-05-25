@@ -55,6 +55,7 @@ import retrofit2.Response;
 
 public class homeFragment extends Fragment implements OnMapReadyCallback
 {
+    //vung bán kính gps
     private  static final int MY_PER = 1000;
     private GoogleMap mMap;
    // private GoogleApiClient googleApiClient;
@@ -84,8 +85,7 @@ public class homeFragment extends Fragment implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
         mServer = Common.getIGoogleApiServer();
-
-
+        //kiểm tra kết nối với server
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocaltionPermission();
         }
@@ -147,7 +147,11 @@ public class homeFragment extends Fragment implements OnMapReadyCallback
         buildLocationRequest();
         buildLocationCallback();
 
+        // hiển thị cái địa điểm liền kề gần nhau
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
+        //lấy được vị trí thay đổi mỗi khi bạn di chuyển thì,
+        // bạn phải đăng ký một request cho location changes thông qua phương thức
+        //Looper có một hàm loop() có nhiệm vụ xử lý từng message trong hàng chờ và sẽ block nếu hàng chờ trống.
         fusedLocationProviderClient.requestLocationUpdates(mlLocationRequest,locationCallback, Looper.myLooper());
 
         return rootView;
@@ -158,7 +162,7 @@ public class homeFragment extends Fragment implements OnMapReadyCallback
         fusedLocationProviderClient.removeLocationUpdates(locationCallback);
         super.onStop();
     }
-
+    //xây dựng Địa điểm Gọi lại
     private void buildLocationCallback() {
         locationCallback = new LocationCallback() {
             @Override
@@ -184,6 +188,7 @@ public class homeFragment extends Fragment implements OnMapReadyCallback
         };
     }
 
+    //xây dựng yêu cầu vị trí
     private void buildLocationRequest() {
         mlLocationRequest = new LocationRequest();
         mlLocationRequest.setInterval(1000);
@@ -275,7 +280,6 @@ public class homeFragment extends Fragment implements OnMapReadyCallback
     }
 
     private String getUrL(double latitude, double longitude, String placeType) {
-
         StringBuilder goBuilder = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
         goBuilder.append("location=" + latitude + "," + longitude);
         goBuilder.append("&radius=5000");
@@ -283,14 +287,15 @@ public class homeFragment extends Fragment implements OnMapReadyCallback
        // goBuilder.append("&keyword=cruise");
        // goBuilder.append("&sensor=true");
         goBuilder.append("&key="+getResources().getString(R.string.browser_key));
-
         Log.d("getUrL", goBuilder.toString());
         return goBuilder.toString();
     }
-
+    //kiểm tra quyền cục bộ
     private  boolean checkLocaltionPermission(){
+        //Các quyền cần người dùng cho phép.
         if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
         {
+            //Hiển thị một Dialog hỏi người dùng cho phép các quyền trên.
             if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION))
                 ActivityCompat.requestPermissions(getActivity(), new String[]{
                         Manifest.permission.ACCESS_FINE_LOCATION
@@ -307,9 +312,11 @@ public class homeFragment extends Fragment implements OnMapReadyCallback
     }
 
     @Override
+    // // Khi người dùng trả lời yêu cầu cấp quyền (cho phép hoặc từ chối).
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
             case MY_PER: {
+                // Chú ý: Nếu yêu cầu bị bỏ qua, mảng kết quả là rỗng.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
@@ -329,18 +336,14 @@ public class homeFragment extends Fragment implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
         //  onLocationChanged(mLastLocation);
-
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED) {
-
+                //Chỉ gọi phương thức này khi đã có quyền xem vị trí người dùng.
                 mMap.setMyLocationEnabled(true);
             }
         }else{
-
             mMap.setMyLocationEnabled(true);
-
         }
         //sự kiên bấm vào địa điểm
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
