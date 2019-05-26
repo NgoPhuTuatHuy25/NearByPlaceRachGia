@@ -7,8 +7,8 @@
         android:title="Nhà"
         android:icon="@drawable/home"/>
     <item android:id="@+id/danduong"
-        android:title="Chỉ đường"
-        android:icon="@drawable/home"/>
+        android:title="Địa điểm"
+        android:icon="@drawable/ic_search_black_24dp"/>
     <item android:id="@+id/yeuthich"
         android:icon="@drawable/yeuthich"
         android:title="Yêu thích"/>

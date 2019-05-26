@@ -6,32 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".xemmap.XemPlaceActivity">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/hotro"
-        android:layout_alignParentLeft="true"
-        android:layout_margin="8dp"
-        android:minHeight="?attr/actionBarSize"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        android:elevation="3dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
-
-        <ImageView
-            android:onClick="trove"
-            android:id="@+id/trove"
-            android:src="@drawable/trove"
-            android:layout_width="40sp"
-            android:layout_height="40sp" />
-        <TextView
-            android:textSize="20sp"
-            android:layout_marginLeft="80sp"
-            android:text="Thông tin địa điểm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </android.support.v7.widget.Toolbar>
     <LinearLayout
         android:layout_centerVertical="true"
         android:orientation="vertical"

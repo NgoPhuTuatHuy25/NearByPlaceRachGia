@@ -160,12 +160,10 @@ public class XemPlaceActivity extends AppCompatActivity {
     }
 
     private String getPhotoOfPlaces(String photo_reference,int maxWidth) {
-
         StringBuilder url = new StringBuilder("https://maps.googleapis.com/maps/api/place/photo");
         url.append("?maxwidth="+maxWidth);
         url.append("&photoreference="+photo_reference);
         url.append("&key="+getResources().getString(R.string.browser_key));
-
         return url.toString();
     }
 

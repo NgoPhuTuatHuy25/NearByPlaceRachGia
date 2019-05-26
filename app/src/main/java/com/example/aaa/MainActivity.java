@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
             case R.id.trangchu:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new homeFragment()).commit();
+                        new homeFragment()).addToBackStack(null).commit();
                 break;
             case R.id.danduong:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

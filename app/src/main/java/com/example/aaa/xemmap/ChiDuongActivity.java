@@ -3,6 +3,7 @@ package com.example.aaa.xemmap;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
@@ -12,6 +13,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.aaa.helper.DirectionJSONParser;
@@ -54,7 +57,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ChiDuongActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    TextView ShowDistanceDuration;
+    TextView ShowDistanceDuration, khoangCach, thoiGian;
+    ImageView trove;
+
 
     FusedLocationProviderClient fusedLocationProviderClient;
     LocationCallback locationCallback;
@@ -77,6 +82,15 @@ public class ChiDuongActivity extends FragmentActivity implements OnMapReadyCall
 
         mService = Common.getIGoogleApiServerScalar();
         ShowDistanceDuration = (TextView) findViewById(R.id.show_distance_time);
+        khoangCach = findViewById(R.id.khoangcach);
+        thoiGian = findViewById(R.id.thoigian);
+        trove = findViewById(R.id.quaylai);
+        trove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ChiDuongActivity.this, XemPlaceActivity.class));
+            }
+        });
 
         buildLocationRequest();
         buildLocationCallback();
@@ -223,20 +237,22 @@ public class ChiDuongActivity extends FragmentActivity implements OnMapReadyCall
             @Override
             public void onResponse(Call<Example> call, Response<Example> response) {
                 try {
-                    //Remove previous line from map
+                    //Xóa dòng trước khỏi bản đồ
                     if (polyline != null) {
                         polyline.remove();
                     }
-                    // This loop will go through all the results and add marker on each location.
+                    //Vòng lặp này sẽ đi qua tất cả các kết quả và thêm điểm đánh dấu vào từng vị trí
                     for (int i = 0; i < response.body().getRoutes().size(); i++) {
                         String distance = response.body().getRoutes().get(i).getLegs().get(i).getDistance().getText();
                         String time = response.body().getRoutes().get(i).getLegs().get(i).getDuration().getText();
-                        ShowDistanceDuration.setText("Distance:" + distance + ", Duration:" + time);
+                        khoangCach.setText("" + distance);
+                        thoiGian.setText("" + time);
+                    //    ShowDistanceDuration.setText("Khoảng cách:" + distance + ", Thời gian:" + time);
                         String encodedString = response.body().getRoutes().get(0).getOverviewPolyline().getPoints();
 
                     }
                 } catch (Exception e) {
-                    Log.d("onResponse", "There is an error");
+                    Log.d("onResponse", "lỗi");
                     e.printStackTrace();
                 }
             }
@@ -310,8 +326,7 @@ public class ChiDuongActivity extends FragmentActivity implements OnMapReadyCall
 //
 //                    LatLng position = new LatLng(lat, lng);
                 List<HashMap<String, String>> path = lists.get(i);
-
-            // Fetching all the points in i-th route
+                //Lấy tất cả các điểm trong tuyến đường thứ i
                 for (int j = 0; j < path.size(); j++) {
                 HashMap<String, String> point = path.get(j);
 
@@ -325,7 +340,7 @@ public class ChiDuongActivity extends FragmentActivity implements OnMapReadyCall
                 lineOptions.width(12);
                 lineOptions.color(Color.BLUE);
                 lineOptions.geodesic(true);
-                Log.d("onPostExecute", "onPostExecute lineoptions decoded");
+                Log.d("onPostExecute", "hiển thị đường vẽ");
             }
             if (lineOptions != null) {
                 mMap.addPolyline(lineOptions);
