@@ -31,7 +31,7 @@ public class XemPlaceActivity extends AppCompatActivity {
     ImageView photo;
     RatingBar ratingBar;
     Button btnViewOnMap,btnViewDirection;
-    TextView place_name,place_address,opening_hours, sdt, trangweb;
+    TextView place_name,place_address,opening_hours, sdt, trangweb, textViewRating;
 
     IGoogleApiServer mService;
 
@@ -70,6 +70,7 @@ public class XemPlaceActivity extends AppCompatActivity {
         place_name = findViewById(R.id.places_name);
         opening_hours = findViewById(R.id.places_open_hour);
         sdt = findViewById(R.id.sodt);
+        textViewRating = findViewById(R.id.textViewRating);
 
         mService = Common.getIGoogleApiServer();
 
@@ -109,17 +110,19 @@ public class XemPlaceActivity extends AppCompatActivity {
             }
         });
 
-//        if (Common.currresults.getPhotos() != null && Common.currresults.getPhotos().length > 0)  {
-//
-//            Picasso.with(this)
-//                    .load(getPhotoOfPlaces(Common.currresults.getPhotos()[0].getPhoto_reference(),1000))
-//                    .placeholder(R.drawable.logoback)
-//                    .error(R.drawable.error)
-//                    .into(photo);
-//        }
+        if (Common.currresults.getPhotos() != null && Common.currresults.getPhotos().length > 0)  {
+
+            Picasso
+                    .get()
+                    .load(getPhotoOfPlaces(Common.currresults.getPhotos()[0].getPhoto_reference(),1000))
+                    .placeholder(R.drawable.logoback)
+                    .error(R.drawable.error)
+                    .into(photo);
+        }
 
         if (Common.currresults.getRating() != null && !TextUtils.isEmpty(Common.currresults.getRating()))  {
             ratingBar.setRating(Float.parseFloat(Common.currresults.getRating()));
+            textViewRating.setText(Common.currresults.getRating());
         }
         else    {
             ratingBar.setVisibility(View.GONE);
