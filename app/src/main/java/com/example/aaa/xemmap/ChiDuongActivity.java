@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.example.aaa.helper.DirectionJSONParser;
 import com.example.aaa.pojo.Example;
@@ -58,7 +59,6 @@ public class ChiDuongActivity extends FragmentActivity implements OnMapReadyCall
 
     private GoogleMap mMap;
     TextView ShowDistanceDuration, khoangCach, thoiGian;
-    ImageView trove;
 
 
     FusedLocationProviderClient fusedLocationProviderClient;
@@ -75,7 +75,6 @@ public class ChiDuongActivity extends FragmentActivity implements OnMapReadyCall
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chi_duong);
-
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -84,13 +83,6 @@ public class ChiDuongActivity extends FragmentActivity implements OnMapReadyCall
         ShowDistanceDuration = (TextView) findViewById(R.id.show_distance_time);
         khoangCach = findViewById(R.id.khoangcach);
         thoiGian = findViewById(R.id.thoigian);
-        trove = findViewById(R.id.quaylai);
-        trove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ChiDuongActivity.this, XemPlaceActivity.class));
-            }
-        });
 
         buildLocationRequest();
         buildLocationCallback();
@@ -280,6 +272,7 @@ public class ChiDuongActivity extends FragmentActivity implements OnMapReadyCall
 
         @Override
         protected List<List<HashMap<String, String>>> doInBackground(String... strings) {
+            //trao đổi dử liệu đôc lập
             JSONObject jsonObject;
             List<List<HashMap<String, String>>> routes = null;
 

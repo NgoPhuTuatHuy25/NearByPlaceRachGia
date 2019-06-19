@@ -44,6 +44,7 @@ public class PlaceOnMapActivity extends FragmentActivity implements OnMapReadyCa
     private GoogleMap googleMap;
     private String type;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

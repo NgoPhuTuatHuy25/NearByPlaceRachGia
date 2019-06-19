@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.trangchu:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new homeFragment()).addToBackStack(null).commit();
+
                 break;
             case R.id.danduong:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void shareApp() {
-        String text = "https://github.com/NgoPhuTuatHuy25/quaBongChuyenDong";
+        String text = "https://github.com/NgoPhuTuatHuy25/NearByPlaceRachGia.git";
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("message/place");
         intent.putExtra(Intent.EXTRA_SUBJECT, "Đường dẫn đến thư mục ứng dụng");
@@ -106,11 +107,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
       //  return super.onCreateOptionsMenu(menu);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

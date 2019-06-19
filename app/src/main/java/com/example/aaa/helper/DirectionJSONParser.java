@@ -12,34 +12,34 @@ import com.google.android.gms.maps.model.LatLng;
 
 public class DirectionJSONParser {
 
-    /** Receives a JSONObject and returns a list of lists containing latitude and longitude */
+    /**Nhận JSONObject và trả về danh sách các danh sách chứa vĩ độ và kinh độ */
     public List<List<HashMap<String,String>>> parse(JSONObject jObject){
-
         List<List<HashMap<String, String>>> routes = new ArrayList<List<HashMap<String,String>>>() ;
         JSONArray jRoutes = null;
-        JSONArray jLegs = null;
-        JSONArray jSteps = null;
-
+        JSONArray jLegs = null;// đoạn đường
+        JSONArray jSteps = null;// khoang cách các bước
         try {
 
             jRoutes = jObject.getJSONArray("routes");
 
-            /** Traversing all routes */
+             //đi qua tất cả các tuyến đường
             for(int i=0;i<jRoutes.length();i++){
                 jLegs = ( (JSONObject)jRoutes.get(i)).getJSONArray("legs");
                 List path = new ArrayList<HashMap<String, String>>();
 
-                /** Traversing all legs */
+                //Đi qua tất cả các đoạn
                 for(int j=0;j<jLegs.length();j++){
                     jSteps = ( (JSONObject)jLegs.get(j)).getJSONArray("steps");
 
-                    /** Traversing all steps */
+
+                    //Đi qua tất cả các khoảng cách
                     for(int k=0;k<jSteps.length();k++){
                         String polyline = "";
                         polyline = (String)((JSONObject)((JSONObject)jSteps.get(k)).get("polyline")).get("points");
                         List<LatLng> list = decodePoly(polyline);
 
-                        /** Traversing all points */
+
+                        //Đi qua tất cả các điểm
                         for(int l=0;l<list.size();l++){
                             HashMap<String, String> hm = new HashMap<String, String>();
                             hm.put("lat", Double.toString(((LatLng)list.get(l)).latitude) );
@@ -59,8 +59,8 @@ public class DirectionJSONParser {
         return routes;
     }
     /**
-     * Method to decode polyline points
-     * Courtesy : http://jeffreysambells.com/2010/05/27/decoding-polylines-from-google-maps-direction-api-with-java
+     *Phương pháp giải mã điểm polyline
+     * http://jeffreysambells.com/2010/05/27/decoding-polylines-from-google-maps-direction-api-with-java
      * */
     private List<LatLng> decodePoly(String encoded) {
 

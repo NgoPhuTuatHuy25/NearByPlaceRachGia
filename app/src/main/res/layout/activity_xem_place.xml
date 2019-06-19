@@ -6,17 +6,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".xemmap.XemPlaceActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="5dp"
+        android:outlineProvider="bounds"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+    </android.support.v7.widget.Toolbar>
+
     <LinearLayout
         android:layout_centerVertical="true"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp">
         <ImageView
             android:id="@+id/photo"
             android:src="@drawable/logoback"
             android:layout_width="match_parent"
-            android:layout_height="200dp" />
-
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -26,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
                 android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/places_name"
                     android:layout_width="match_parent"
@@ -44,42 +61,6 @@
                     android:text="Địa chỉ"
                     android:textColor="#fff"
                     android:textSize="14sp" />
-                <LinearLayout
-                    android:id="@+id/linearLayoutRating"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingBottom="5dp"
-                    android:paddingLeft="2dp"
-                    android:paddingRight="2dp"
-                    android:paddingTop="5dp">
-
-                    <TextView
-                        android:id="@+id/textViewRating"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="5dp"
-                        android:padding="5dp"
-                        android:text="5"
-                        android:textColor="#fff"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                    <RatingBar
-                        android:id="@+id/ratingBar"
-                        style="?android:attr/ratingBarStyleSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="8dp"
-                        android:isIndicator="true"
-                        android:numStars="5"
-                        android:progressTint="#fff"
-                        android:rating="5"
-                        android:stepSize="0.1" />
-
-                </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -175,12 +156,42 @@
 
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="2dp"
+                        android:paddingTop="5dp">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:padding="5dp"
+                            android:text="Đánh giá: "
+                            android:textColor="#fff"
+                            android:textSize="14sp" />
+                        <RatingBar
+                        android:layout_marginRight="30dp"
+                        android:id="@+id/ratingBar"
+                        android:max="5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
             <Button
                 android:id="@+id/showmap"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hiển thì bản đồ"
+                android:text="Hiển thị bản đồ"
                 style="@style/Widget.AppCompat.Button.Colored"
                 />
             <Button
@@ -194,5 +205,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
+    include
 </RelativeLayout>

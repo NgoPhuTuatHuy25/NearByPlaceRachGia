@@ -16,6 +16,7 @@ import com.example.aaa.activity.PlacesConstant;
 import com.example.aaa.chiduong.Results;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 public class ShowPlacesOnMapActivity extends FragmentActivity implements OnMapReadyCallback {

@@ -16,7 +16,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -48,6 +47,9 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -245,28 +247,27 @@ public class homeFragment extends Fragment implements OnMapReadyCallback
                                 Results googleResults = response.body().getResults()[i];
                                 double lat = Double.parseDouble(googleResults.getGeometry().getLocation().getLat());
                                 double lng = Double.parseDouble(googleResults.getGeometry().getLocation().getLng());
-                                String placeName = googleResults.getName();
-                                String vicinicity = googleResults.getVicinity();
+                                String  placeName = googleResults.getName();
+
+                             //   String vicinicity = googleResults.getVicinity();
                                 LatLng latLng = new LatLng(lat, lng);
                                 markerOptions.position(latLng);
                                 markerOptions.title(placeName);
-                                markerOptions.title(vicinicity);
+
+                             //   markerOptions.title(vicinicity);
                                 if(placeType.equals("atm"))
                                     markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-
                                 else if(placeType.equals("bus_station"))
                                     markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
                                 else  if(placeType.equals("lodging"))
                                     markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
-                                else  if(placeType.equals("cafe"))
-                                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
-                                else
-                                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
 
                                 markerOptions.snippet(String.valueOf(i)); //gán chỉ số cho market
+
                                 mMap.addMarker(markerOptions);
                                 mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                                 mMap.animateCamera(CameraUpdateFactory.zoomTo(13));
+                                //marker.showInfoWindow();
 
                             }
                         }
@@ -349,11 +350,11 @@ public class homeFragment extends Fragment implements OnMapReadyCallback
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-
                 if(marker.getSnippet() != null) {
                     //khi người dùng chom địa điểm, thì sẽ server trả kết quả về
                     Common.currresults = myPlaces.getResults()[Integer.parseInt(marker.getSnippet())];
                     startActivity(new Intent(getActivity(), XemPlaceActivity.class));
+                   // startActivity(new Intent(getActivity(), BlankFragment.class));
                 }
                 //bắt sự kiện màn hình mới
                 //  startActivity(new Intent(MapsActivity.this, xemPlace.class));
@@ -361,4 +362,5 @@ public class homeFragment extends Fragment implements OnMapReadyCallback
             }
         });
     }
+
 }

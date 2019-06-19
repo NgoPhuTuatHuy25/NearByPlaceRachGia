@@ -1,11 +1,20 @@
 package com.example.aaa.xemmap;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
+import android.provider.MediaStore;
+import android.provider.OpenableColumns;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.aaa.Common;
 import com.example.aaa.fragment.homeFragment;
@@ -22,11 +32,19 @@ import com.squareup.picasso.Picasso;
 import com.example.aaa.R;
 
 import com.example.aaa.remote.IGoogleApiServer;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class XemPlaceActivity extends AppCompatActivity {
+    public static final String UPLOAD_URL = "http://192.168.1.20/file/upload.php";
+    public static final String UPLOAD_KEY = "image";
+
+    private int PICK_IMAGE_REQUEST = 1;
 
     ImageView photo;
     RatingBar ratingBar;
@@ -40,6 +58,10 @@ public class XemPlaceActivity extends AppCompatActivity {
     private Results re;
     private double lat, lng;
 
+    Toolbar toolbar;
+    private Uri filePath;
+    private Bitmap bitmap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +72,12 @@ public class XemPlaceActivity extends AppCompatActivity {
         ratingBar = findViewById(R.id.ratingBar);
 
         btnViewOnMap = findViewById(R.id.showmap);
-   //     btnViewDirection = findViewById(R.id.chiduong);
 
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+
+        //     btnViewDirection = findViewById(R.id.chiduong);
         init();
 //        Bundle bundle = getIntent().getExtras();
 //
@@ -122,7 +148,7 @@ public class XemPlaceActivity extends AppCompatActivity {
 
         if (Common.currresults.getRating() != null && !TextUtils.isEmpty(Common.currresults.getRating()))  {
             ratingBar.setRating(Float.parseFloat(Common.currresults.getRating()));
-            textViewRating.setText(Common.currresults.getRating());
+            //textViewRating.setText(Common.currresults.getRating());
         }
         else    {
             ratingBar.setVisibility(View.GONE);
@@ -175,5 +201,72 @@ public class XemPlaceActivity extends AppCompatActivity {
     }
     private void init(){
         btnViewDirection =findViewById(R.id.chiduong);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.upload, menu);
+        return true;
+      //  return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.upload:
+                showFileChooser();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    private void showFileChooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            filePath = data.getData();
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                photo.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+    public String getStringImage(Bitmap bmp){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return encodedImage;
+    }
+    String getFileName(Uri uri){
+        String result = null;
+        if (uri.getScheme().equals("content")) {
+            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+            try {
+                if (cursor != null && cursor.moveToFirst()) {
+                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                }
+            } finally {
+                cursor.close();
+            }
+        }
+        if (result == null) {
+            result = uri.getPath();
+            int cut = result.lastIndexOf('/');
+            if (cut != -1) {
+                result = result.substring(cut + 1);
+            }
+        }
+        return result;
     }
 }

@@ -50,10 +50,12 @@
         <activity android:name=".fragment.DanhMucActivity" />
         <activity
             android:name=".xemmap.ChiDuongActivity"
-            android:parentActivityName=".xemmap.XemPlaceActivity" />
+            android:label="Chỉ đường" />
         <activity
             android:name=".xemmap.XemPlaceActivity"
-            android:parentActivityName=".MainActivity" />
+            android:label="Thông tin địa điểm"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name=".dangnhap.DangNhapActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -84,6 +86,7 @@
         <activity
             android:name=".activity.ShowPlacesOnMapActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
 
     </application>
 
